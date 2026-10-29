@@ -1,0 +1,18 @@
+# Paintings screensaver set: Art Institute of Chicago open access, all marked public domain (CC0) by the museum.
+# Picked for clear, detailed, recognisable works (hazy Impressionist ones read as mud on a big screen).
+# Fetched 2026-10-29 at 4000 px (Hiroshige 3804 px), saved at JPEG quality 85. file | title | artist | date | AIC image id
+homer-croquet-scene.jpg | Croquet Scene | Winslow Homer | 1866 | f7b2db45-f393-653c-07ef-84319b0cdb92
+claesz-still-life.jpg | Still Life | Pieter Claesz | c. 1625 | 574695d5-6bf3-fe58-a1d5-e6cbb5e10c77
+hiroshige-mishima-morning-mist-mishima-a.jpg | Mishima: Morning Mist (Mishima, asagiri), from the series "Fifty-three Stations of the Tokaido Road (Tokaido gojusan tsugi no uchi)," also known as the Hoeido Tokaido | Utagawa Hiroshige | c. 1833/34 | c047003a-949c-a581-7c5a-2c415e8cac75
+guardi-the-garden-of-palazzo-contarini-d.jpg | The Garden of Palazzo Contarini dal Zaffo | Francesco Guardi | Late 1770s | b553d1fe-da1f-dd9e-ff0f-c36fc22aac0e
+hokusai-under-the-wave-off-kanagawa-kana.jpg | Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series "Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)" | Katsushika Hokusai | 1830/33 | b3974542-b9b4-7568-fc4b-966738f61d78
+spadaro-landscape-with-rock-and-fortress.jpg | Landscape with Rock and Fortress | Domenico Gargiuli (Micco Spadaro) | c. 1645 | 1b605198-afe5-1052-3c7b-0c08734238e1
+monet-poppy-field-giverny.jpg | Poppy Field (Giverny) | Claude Monet | 1890–91 | db94c894-a24c-c2e0-9db9-0506567a0152
+seurat-a-sunday-on-la-grande-jatte-1884.jpg | A Sunday on La Grande Jatte — 1884 | Georges Seurat | 1884–86, border added 1888–89 | 2d484387-2509-5e8e-2c43-22f9981972eb
+fromentin-on-the-nile.jpg | On the Nile | Eugène Fromentin | 1871 | 0eb5b4c2-517a-cd17-bca8-ff290e90059c
+hokusai-shower-below-the-summit-sanka-ha.jpg | Shower Below the Summit (Sanka hakuu), from the series "Thirty-Six Views of Mount Fuji (Fugaku sanjurokkei)" | Katsushika Hokusai | c. 1830/33 | bbb6d024-f931-2e2f-eb95-750991834b1c
+homer-mount-washington.jpg | Mount Washington | Winslow Homer | 1869 | ad02b33a-4aac-03cc-88e4-7db2cc03b854
+heade-magnolias-on-light-blue-velvet-clo.jpg | Magnolias on Light Blue Velvet Cloth | Martin Johnson Heade | 1885–95 | 0729fbba-51e3-a2d7-6d4d-61c2be62af3f
+johnson-husking-bee-island-of-nantucket.jpg | Husking Bee, Island of Nantucket | Eastman Johnson | 1876 | 8a647e1c-d778-db71-6ba4-6456b800d6b9
+bril-landscape-with-hunters.jpg | Landscape with Hunters | Paul Bril | 1619 | 3b06a501-7b91-07b2-80f1-a683cbfeaad9
+church-view-of-cotopaxi.jpg | View of Cotopaxi | Frederic Edwin Church | 1857 | 33fc29fc-097b-576b-c9e6-c3352d9d3f15
