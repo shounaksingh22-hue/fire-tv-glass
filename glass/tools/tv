@@ -1,0 +1,8 @@
+#!/bin/sh
+# Wrapper: run tools/tv.py with the project venv. Usage: tools/tv shell 'cmd'
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+if [ ! -x "$DIR/.venv/bin/python" ]; then
+  echo "The TV helper isn't installed yet. Run ./setup.sh first." >&2
+  exit 1
+fi
+exec "$DIR/.venv/bin/python" "$DIR/tools/tv.py" "$@"

@@ -1,0 +1,26 @@
+#!/bin/bash
+# Starts Glass's phone-remote key helper (Injector) on a TV, if it isn't running:  bin/remote-helper <tv-ip>
+# Fire OS blocks apps from the TV's own ADB, so after a TV reboot only a computer can start it
+# (setup.sh home and the nightly maintain.sh call this). Until then the remote still works in a
+# slower fallback mode. The helper's secret is read from Glass on the TV and never printed.
+set -u
+IP="${1:?usage: remote-helper <tv-ip>}"
+export ANDROID_SERIAL="$IP:5555"
+GLASS=com.ivantrj.glasslauncher
+adb connect "$ANDROID_SERIAL" >/dev/null
+APK=$(adb shell pm path $GLASS </dev/null | tr -d '\r' | sed 's/^package://')
+# The helper is started with the installed APK's modification time, so after a Glass update
+# (same path, new file) it's restarted, or it would keep the old code until the TV reboots.
+STAMP=$(adb shell stat -c %Y "$APK" </dev/null | tr -d '\r')
+# [c]om...: so the pattern doesn't match the shell running this very pgrep
+if adb shell "pgrep -f '[c]om.ivantrj.glasslauncher.Injector .* $APK $STAMP'" </dev/null | grep -q .; then
+  echo "remote helper running"; exit 0
+fi
+adb shell "pkill -f $GLASS.Injector" </dev/null
+SECRET=$(adb shell "run-as $GLASS cat shared_prefs/remote.xml" </dev/null | sed -n 's/.*name="secret">\([0-9a-f]*\)<.*/\1/p')
+if [ -z "$SECRET" ]; then
+  echo "remote helper: Glass hasn't made its secret yet (open Glass once), skipped"; exit 0
+fi
+adb shell "CLASSPATH=$APK setsid app_process / $GLASS.Injector $SECRET $APK $STAMP >/dev/null 2>&1 </dev/null &" </dev/null
+sleep 1
+adb shell "pgrep -f $GLASS.Injector" </dev/null | grep -q . && echo "remote helper started" || echo "remote helper failed to start"

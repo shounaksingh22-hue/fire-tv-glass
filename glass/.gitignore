@@ -1,0 +1,24 @@
+# Python venv for tools/tv (recreate per README)
+.venv/
+__pycache__/
+
+# Gradle / Android build output
+launcher/.gradle/
+launcher/build/
+launcher/app/build/
+launcher/local.properties
+launcher/.idea/
+*.iml
+
+# Device backup: settings dumps contain device identifiers; kept locally only
+backup/
+
+.DS_Store
+
+# Your TV's address (see README)
+.tv-ip
+
+# Raw screenshots and logs from setup; the README uses the curated images in docs/
+shots/
+debloat/disable-log.txt
+debloat/disabled-now.txt

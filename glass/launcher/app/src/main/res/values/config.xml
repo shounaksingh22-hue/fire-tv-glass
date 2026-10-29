@@ -1,0 +1,47 @@
+<resources>
+    <!-- Dock apps, left to right. Missing or disabled packages are skipped.
+         Overridable without rebuilding: ./configure.sh dock pkg1 pkg2 pkg3 pkg4 -->
+    <string-array name="dock_packages">
+        <item>io.gh.reisxd.tizentube.cobalt</item>
+        <item>com.IPTVOutlet.STC</item>
+        <item>com.netflix.ninja</item>
+        <item>com.apple.atve.amazon.appletv</item>
+    </string-array>
+
+    <!-- Never shown in the grid: Amazon system screens that register phone-style launcher
+         entries, plus the stock launcher. Override without rebuilding:
+         ./configure.sh hide pkg ... (adds to this list) -->
+    <string-array name="hidden_packages">
+        <item>com.amazon.tv.launcher</item>
+        <item>com.amazon.audiohome</item>
+        <item>com.amazon.firetv.troubleshooting</item>
+        <item>com.amazon.ftv.profilepicker</item>
+        <item>com.amazon.ftv.screensaver</item>
+        <item>com.amazon.hedwig</item>
+        <item>com.amazon.smarthomemapviewapp</item>
+        <item>com.amazon.ssm</item>
+        <item>com.amazon.whasettings</item>
+        <!-- Its only screen needs an Amazon-signed permission, so it can never open from Glass -->
+        <item>com.apple.airplay.amazon.airplay</item>
+        <!-- Amazon extras: hidden here, still installed (Appstore is needed for app updates) -->
+        <item>com.amazon.spiderpork</item>
+        <item>com.amazon.cloud9</item>
+        <item>com.amazon.venezia</item>
+        <item>com.amazon.tv.localgallery</item>
+        <item>com.amazon.vizzini.ftvcds</item>
+        <item>com.android.documentsui</item>
+        <item>com.android.providers.downloads.ui</item>
+    </string-array>
+
+    <!-- Per-app tile overrides: "package|label|drawable name|#RRGGBB glow" (empty fields keep the app's own) -->
+    <string-array name="tile_overrides">
+        <item>com.IPTVOutlet.STC|Live TV|banner_live_tv|#FF453A</item>
+        <item>io.gh.reisxd.tizentube.cobalt|TizenTube|banner_tizentube|#FF375F</item>
+        <item>com.apple.airplay.amazon.airplay|AirPlay|banner_airplay|#0A84FF</item>
+        <item>org.fdroid.fdroid|F-Droid|banner_fdroid|#30D158</item>
+        <item>com.neilturner.aerialviews|Screensaver|banner_aerial|#64D2FF</item>
+        <item>com.estrongs.android.pop|Files|banner_files|#5E9EFF</item>
+        <item>com.esaba.downloader|Downloader|banner_downloader|#FF9F0A</item>
+        <item>ch.protonvpn.android.reproducible|Proton VPN|banner_vpn|#8A6EFF</item>
+    </string-array>
+</resources>

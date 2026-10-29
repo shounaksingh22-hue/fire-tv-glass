@@ -1,0 +1,6 @@
+<!-- Customize drawer: A photo: frame, hill and sun -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M3,5h18v14h-18zM3,16l5,-5 4,4 3,-3 6,6M16,7.5a1.5,1.5 0,1 0,0.01 0" />
+</vector>

@@ -1,0 +1,69 @@
+# Fire TV debloat catalog — what to disable, and what to KEEP on purpose.
+# Format:  package | category | what it is
+# setup.sh plan  offers only packages that exist on the TV as enabled system apps and are not in
+# that TV's protected.txt. Lines starting with "#" are never offered. Everything is reversible:
+#   adb shell pm enable --user 0 <package>
+# Verified on Fire OS 7.7.1.5 (AFTDCT31 Fire TV Edition TV), Oct 2026.
+
+## Telemetry / analytics
+com.amazon.dp.logger                         | telemetry | device logger
+com.amazon.perfcollection                    | telemetry | performance collection
+com.amazon.wirelessmetrics.service           | telemetry | Wi-Fi metrics
+com.amazon.connectivitydiag                  | telemetry | connectivity diagnostics uploader
+com.amazon.tv.developer.dataservice          | telemetry | developer data service
+com.amazon.tv.acr                            | telemetry | automatic content recognition (watches what's on screen)
+com.amazon.tv.fw.metrics                     | telemetry | Fire TV framework metrics
+com.amazon.device.telemetry.emitter          | telemetry | telemetry emitter (Fire OS 8)
+com.amazon.neo.minerva                       | telemetry | Minerva metrics (Fire OS 8)
+com.amazon.neo.minerva.logcat                | telemetry | Minerva log upload (Fire OS 8)
+
+## Ads / content pushing
+com.amazon.media.recommendations             | ads | recommendation rows for the stock home
+com.amazon.hybridadidservice                 | ads | advertising ID service
+com.amazon.sneakpeek                         | ads | autoplaying previews
+com.amazon.kso.blackbird                     | ads | sponsored screensaver
+com.amazon.shoptv.client                     | ads | shopping
+com.amazon.shoptv.firetv.client              | ads | shopping
+com.amazon.minitv.android.app                | ads | Amazon miniTV
+com.amazon.tv.releasenotes                   | clutter | release-notes popups
+com.amazon.tv.ftvambient                     | ads | Ambient Experience (Fire OS 8)
+com.amazon.tv.earlyaccess                    | ads | early-access promos (Fire OS 8)
+
+## Background services
+com.amazon.sharingservice.android.client.proxy | background | sharing proxy
+com.amazon.ods.kindleconnect                 | background | Kindle connect
+com.amazon.whisperjoin.middleware.np         | background | Frustration-Free Setup helper (Wi-Fi provisioning)
+com.android.printservice.recommendation      | background | print service stub
+com.android.protips                          | background | pro tips
+
+## Preloaded apps
+com.amazon.storm.lightning.tutorial          | clutter | tutorials
+com.amazon.tmm.tutorial                      | clutter | tutorials
+com.amazon.tv.website_launcher               | clutter | website shortcuts
+com.amazon.gamehub                           | clutter | game hub
+com.amazon.tahoe                             | clutter | Amazon Kids
+com.amazon.bueller.music                     | clutter | Amazon Music (disable only if unused)
+com.amazon.bueller.photos                    | clutter | Amazon Photos (disable only if unused)
+
+## KEEP ON PURPOSE (never offered) — why
+# com.amazon.tv.launcher                     | stock home: Fire OS needs it; disabling risks a TV with no home screen
+# com.amazon.firehomestarter                 | starts the stock home on boot
+# com.amazon.venezia                         | Appstore: updates Netflix, Prime, HBO, etc. (hide it in Glass instead)
+# com.amazon.tv.livetv                       | Live TV / channel guide (user wanted Live TV)
+# com.amazon.providers.contentsupport        | content provider other apps depend on; breaks things on Fire OS 7
+# com.amazon.tv.ottssocompanionapp           | app sign-in companion (sign in with phone)
+# com.amazon.vizzini                         | Alexa voice (voice button on the remote)
+# com.amazon.alexa*  com.amazon.whad          | Alexa media / voice UI
+# com.amazon.aca  com.amazon.adep             | account sync / Amazon Security
+# com.amazon.prism.android.service            | profiles
+# com.amazon.awvflingreceiver  com.amazon.dialservice  com.amazon.whisperplay.service.install
+#                                            | casting (phone -> TV, incl. YouTube/TizenTube casting)
+# com.amazon.cast.sink                       | Miracast screen mirroring
+# com.amazon.tv.forcedotaupdater.v2  com.amazon.tv.easyupgrade
+#                                            | system updates (security) — keep unless you really mean it
+# com.amazon.ceviche  com.fireos.sdk.ftve.addp | unknown role; not worth the risk
+
+## Fire OS REFUSES these ("protected package") — don't bother
+# com.amazon.device.crashmanager  com.amazon.device.logmanager  com.amazon.device.metrics
+# com.amazon.client.metrics  com.fireos.usagestats.proxy  com.amazon.ftvads.deeplinking
+# com.amazon.tv.csapp  com.amazon.device.software.ota  com.amazon.device.software.ota.override

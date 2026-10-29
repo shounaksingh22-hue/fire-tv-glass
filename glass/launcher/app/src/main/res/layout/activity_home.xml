@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Designed on the 960x540dp canvas of a 1080p Fire TV (density 320).
+     Everything that moves when you press Down lives inside @id/page. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:clipChildren="false">
+
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/page"
+        android:layout_width="match_parent"
+        android:layout_height="1080dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <!-- Ambient glow: a circle squashed into an ellipse behind the dock (scaleY set in code) -->
+        <View
+            android:id="@+id/glow"
+            android:layout_width="match_parent"
+            android:layout_height="960dp"
+            android:layout_marginTop="-42dp" />
+
+        <View
+            android:id="@+id/band"
+            android:layout_width="840dp"
+            android:layout_height="162dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="357dp"
+            android:background="@drawable/band_bg" />
+
+        <com.ivantrj.glasslauncher.GlassHighlight
+            android:id="@+id/highlight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="82dp"
+            android:layout_marginTop="34dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#B3FFFFFF"
+                android:textSize="19sp" />
+
+            <TextClock
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-4dp"
+                android:layout_marginTop="-10dp"
+                android:format12Hour="h:mm"
+                android:format24Hour="HH:mm"
+                android:includeFontPadding="false"
+                android:textColor="#FFFFFFFF"
+                android:textSize="100sp" />
+
+            <TextClock
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:format12Hour="EEEE, d MMMM"
+                android:format24Hour="EEEE, d MMMM"
+                android:textColor="#99FFFFFF"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#99FFFFFF"
+                android:textSize="17sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Where the wallpaper was taken (files/wallpapers/captions.txt) -->
+        <TextView
+            android:id="@+id/wallCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="86dp"
+            android:layout_marginTop="322dp"
+            android:drawableStart="@drawable/ic_pin"
+            android:drawablePadding="6dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="#B3FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/dockTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="282dp"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#F2FFFFFF"
+            android:textSize="50sp" />
+
+        <LinearLayout
+            android:id="@+id/dockRow"
+            android:layout_width="816dp"
+            android:layout_height="144dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="367dp"
+            android:clipChildren="false"
+            android:orientation="horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid"
+            android:layout_width="816dp"
+            android:layout_height="440dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="531dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="false"
+            android:overScrollMode="never"
+            android:paddingBottom="24dp"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/pills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="84dp"
+            android:clipChildren="false"
+            android:orientation="horizontal">
+
+            <!-- Tools: free memory, focus timer and lock, in one menu -->
+            <LinearLayout android:id="@+id/pillTools" style="@style/PillRound">
+                <ImageView style="@style/PillIcon" android:layout_marginEnd="0dp" android:src="@drawable/ic_tools" />
+                <TextView android:id="@+id/boostText" style="@style/PillText"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="5dp" android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/pillInputs" style="@style/Pill">
+                <ImageView style="@style/PillIcon" android:src="@drawable/ic_input" />
+                <TextView style="@style/PillText" android:text="@string/inputs" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/pillWifi" style="@style/Pill">
+                <ImageView style="@style/PillIcon" android:src="@drawable/ic_wifi" />
+                <TextView android:id="@+id/wifiName" style="@style/PillText" android:text="Wi-Fi" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/pillLook" style="@style/PillRound">
+                <ImageView style="@style/PillIcon" android:layout_marginEnd="0dp" android:src="@drawable/ic_customize" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/pillSettings" style="@style/Pill">
+                <ImageView style="@style/PillIcon" android:src="@drawable/ic_settings" />
+                <TextView style="@style/PillText" android:text="@string/settings" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Apps: top-left, the left dock hangs down from it -->
+        <LinearLayout android:id="@+id/pillApps" style="@style/PillRound"
+            android:layout_gravity="top|start"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="42dp">
+            <ImageView style="@style/PillIcon" android:layout_marginEnd="0dp" android:src="@drawable/ic_apps" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/inputsMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menu_bg"
+        android:minWidth="220dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone" />
+
+</FrameLayout>

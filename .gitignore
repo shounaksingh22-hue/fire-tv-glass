@@ -1,0 +1,8 @@
+# Per-TV records (your apps, plans, Wi-Fi details) stay on your computer
+tvs/*
+!tvs/.gitkeep
+# Build output
+build/
+.gradle/
+local.properties
+.DS_Store

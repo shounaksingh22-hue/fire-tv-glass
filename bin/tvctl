@@ -1,0 +1,35 @@
+#!/bin/bash
+# Control the TV from the Mac — and from Siri/Shortcuts (see PLAYBOOK.md, "Siri & iPhone").
+#   tvctl lock [minutes]      lock now (no minutes = until unlocked on the TV)
+#   tvctl timer [minutes]     focus timer (default 25)      tvctl break [minutes]  (default 5)
+#   tvctl stoptimer | refresh | paintings | home | off | on
+#   tvctl open netflix|youtube|prime|appletv|hbo|jellyfin|livetv
+# TV address: TV_IP env var, else ~/.tv-ip (echo 192.168.1.50 > ~/.tv-ip)
+IP="${TV_IP:-$(cat ~/.tv-ip 2>/dev/null)}"
+[ -n "$IP" ] || { echo "Which TV? Set TV_IP or put its address in ~/.tv-ip"; exit 1; }
+export ANDROID_SERIAL="$IP:5555"
+export PATH="/opt/homebrew/bin:$PATH"
+adb connect "$ANDROID_SERIAL" >/dev/null 2>&1
+[ "$(adb get-state 2>/dev/null)" = device ] || { echo "TV at $IP is off or unreachable"; exit 1; }
+G=com.ivantrj.glasslauncher/.HomeActivity
+act() { adb shell am start -n $G --es action "$@" >/dev/null 2>&1; }
+case "${1:-}" in
+  lock)      act lock --ei minutes "${2:-0}"; echo "TV locked${2:+ for $2 min}" ;;
+  timer)     act timer --ei minutes "${2:-25}" --es label Focus; echo "Focus ${2:-25} min" ;;
+  break)     act timer --ei minutes "${2:-5}" --es label Break; echo "Break ${2:-5} min" ;;
+  stoptimer) act stoptimer; echo "Timer stopped" ;;
+  refresh)   act refresh; echo "Refreshing" ;;
+  paintings) act paintings; echo "Paintings on (any button ends it)" ;;
+  home)      adb shell input keyevent KEYCODE_HOME ;;
+  off)       adb shell input keyevent KEYCODE_SLEEP ;;
+  on)        adb shell input keyevent KEYCODE_WAKEUP ;;
+  open)
+    case "${2:-}" in
+      netflix) p=com.netflix.ninja ;; youtube) p=io.gh.reisxd.tizentube.cobalt ;;
+      prime) p=com.amazon.firebat ;; appletv) p=com.apple.atve.amazon.appletv ;;
+      hbo) p=com.hbo.hbonow ;; jellyfin) p=org.jellyfin.androidtv ;; livetv) p=com.IPTVOutlet.STC ;;
+      *) echo "open what? netflix youtube prime appletv hbo jellyfin livetv"; exit 1 ;;
+    esac
+    adb shell monkey -p $p -c android.intent.category.LEANBACK_LAUNCHER 1 >/dev/null 2>&1; echo "Opening $2" ;;
+  *) sed -n '2,8p' "$0"; exit 1 ;;
+esac

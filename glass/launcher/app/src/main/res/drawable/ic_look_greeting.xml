@@ -1,0 +1,6 @@
+<!-- Customize drawer: Smile -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M12,3a9,9 0,1 0,0.01 0zM8,14c1.6,2.2 6.4,2.2 8,0M9,9.5v0.3M15,9.5v0.3" />
+</vector>

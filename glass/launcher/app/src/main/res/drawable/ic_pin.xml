@@ -1,0 +1,6 @@
+<!-- Location pin for the wallpaper caption -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="14dp" android:height="14dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#B3FFFFFF"
+        android:pathData="M12,2C8.1,2 5,5.1 5,9c0,5.2 7,13 7,13s7,-7.8 7,-13c0,-3.9 -3.1,-7 -7,-7zM12,11.5a2.5,2.5 0,1 1,0 -5a2.5,2.5 0,1 1,0 5z" />
+</vector>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Nightly upkeep for one TV at 4:00 (runs on next wake if the Mac slept). From the kit folder,
+     with your TV's address (example 192.168.1.50):
+       IP=192.168.1.50; sed "s|TV_IP|$IP|g; s|KIT_DIR|$PWD|g" com.firetv.maintain.plist.template \
+         > ~/Library/LaunchAgents/com.firetv.maintain.$IP.plist
+       launchctl load ~/Library/LaunchAgents/com.firetv.maintain.$IP.plist
+     Stop: launchctl unload <that file> -->
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.firetv.maintain.TV_IP</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>KIT_DIR/maintain.sh</string>
+        <string>TV_IP</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict><key>Hour</key><integer>4</integer><key>Minute</key><integer>0</integer></dict>
+</dict>
+</plist>

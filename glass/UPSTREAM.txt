@@ -1,0 +1,1 @@
+Fork of github.com/ivantrj/firetv-glass-launcher at upstream commit 9d68fad, with our changes on top.

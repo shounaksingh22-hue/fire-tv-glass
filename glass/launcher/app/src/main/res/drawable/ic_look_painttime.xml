@@ -1,0 +1,6 @@
+<!-- Customize drawer: Hourglass -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M7,3h10M7,21h10M8,3c0,4.5 8,4.5 8,9c0,4.5 -8,4.5 -8,9M16,3c0,4.5 -8,4.5 -8,9c0,4.5 8,4.5 8,9" />
+</vector>
