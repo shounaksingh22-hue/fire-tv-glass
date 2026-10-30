@@ -91,10 +91,10 @@ home)
   out=$(adb install -r -g "$APK" 2>&1); echo "$out" | tail -1
   echo "$out" | grep -q '^Success' || { echo "Install failed: nothing changed. Free space above; Android wants ~10% free (adb shell pm trim-caches 2G)."; exit 1; }
   tv cmd package set-home-activity "$GLASS/.HomeActivity"
-  reconnect_service
   tv settings put global alarm_manager_constants min_futurity=0   # Android 9: no 5 s delay after Home
   tv dpm set-active-admin "$GLASS/.SleepAdmin" | tail -1          # phone remote Sleep without the key helper
   tv am start -n "$GLASS/.HomeActivity" >/dev/null; sleep 3      # Glass makes its remote secret on first start
+  reconnect_service   # last: device admin can restart Glass, leaving it half-connected
   "$KIT/bin/remote-helper" "$IP"                                  # phone remote: fast key helper
   # Wallpapers into Glass's private folder (debug build allows run-as)
   tv "run-as $GLASS mkdir -p files/wallpapers"
@@ -155,10 +155,10 @@ update)
   echo "Installing $APK"
   out=$(adb install -r -g "$APK" 2>&1); echo "$out" | tail -1
   echo "$out" | grep -q '^Success' || { echo "Install failed: nothing changed. Free space above; Android wants ~10% free (adb shell pm trim-caches 2G)."; exit 1; }
-  reconnect_service
   tv dpm set-active-admin "$GLASS/.SleepAdmin" 2>&1 | tail -1
   tv "run-as $GLASS ls files/paintings" 2>/dev/null | grep -q jpg && tv pm grant "$GLASS" android.permission.WRITE_SECURE_SETTINGS
   tv am start -n "$GLASS/.HomeActivity" >/dev/null; sleep 4
+  reconnect_service   # last: device admin and grants can restart Glass, leaving it half-connected
   "$KIT/bin/remote-helper" "$IP"                                  # restarts it if it was the old version
   ;;
 paintings)
